@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223220733) do
+ActiveRecord::Schema.define(version: 20131226225806) do
 
   create_table "films", force: true do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20131223220733) do
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "import_at"
+    t.datetime "deleted_at"
   end
 
 end
