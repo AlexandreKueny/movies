@@ -4,7 +4,7 @@ class FilmsController < ApplicationController
   # GET /films
   # GET /films.json
   def index
-    @films = Film.all
+    @films = Film.order(name: :asc)
   end
 
   # GET /films/1

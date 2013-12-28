@@ -1,0 +1,35 @@
+<h1>Listing torrents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Path</th>
+      <th>Comment</th>
+      <th>Import at</th>
+      <th>Deleted at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @torrents.each do |torrent| %>
+      <tr>
+        <td><%= torrent.name %></td>
+        <td><%= torrent.path %></td>
+        <td><%= torrent.comment %></td>
+        <td><%= torrent.import_at %></td>
+        <td><%= torrent.deleted_at %></td>
+        <td><%= link_to 'Show', torrent %></td>
+        <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
+        <td><%= link_to 'Destroy', torrent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Torrent', new_torrent_path %>

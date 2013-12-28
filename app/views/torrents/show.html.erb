@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @torrent.name %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @torrent.path %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @torrent.comment %>
+</p>
+
+<p>
+  <strong>Import at:</strong>
+  <%= @torrent.import_at %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @torrent.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_torrent_path(@torrent) %> |
+<%= link_to 'Back', torrents_path %>

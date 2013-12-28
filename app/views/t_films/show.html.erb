@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @t_film.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @t_film.size %>
+</p>
+
+<p>
+  <strong>Torrent:</strong>
+  <%= @t_film.torrent %>
+</p>
+
+<%= link_to 'Edit', edit_t_film_path(@t_film) %> |
+<%= link_to 'Back', t_films_path %>

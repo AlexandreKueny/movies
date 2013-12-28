@@ -1,0 +1,37 @@
+<%= form_for(@torrent) do |f| %>
+  <% if @torrent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@torrent.errors.count, "error") %> prohibited this torrent from being saved:</h2>
+
+      <ul>
+      <% @torrent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :path %><br>
+    <%= f.text_area :path %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :import_at %><br>
+    <%= f.datetime_select :import_at %>
+  </div>
+  <div class="field">
+    <%= f.label :deleted_at %><br>
+    <%= f.datetime_select :deleted_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

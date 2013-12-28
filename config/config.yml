@@ -1,4 +1,5 @@
 development:
   films_base_path: 'G:/films'
+  torrents_base_path: 'C:/Users/Alexandre/Downloads/torrent/films'
 
 production:

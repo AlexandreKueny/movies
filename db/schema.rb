@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226225806) do
+ActiveRecord::Schema.define(version: 20131228205740) do
 
   create_table "films", force: true do |t|
     t.string   "name"
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(version: 20131226225806) do
     t.datetime "updated_at"
     t.datetime "import_at"
     t.datetime "deleted_at"
+  end
+
+  create_table "t_films", force: true do |t|
+    t.string   "name"
+    t.integer  "size"
+    t.integer  "torrent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "torrents", force: true do |t|
+    t.string   "name"
+    t.text     "path"
+    t.text     "comment"
+    t.datetime "import_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
