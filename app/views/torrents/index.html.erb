@@ -20,8 +20,8 @@
         <td><%= torrent.name %></td>
         <td><%= torrent.path %></td>
         <td><%= torrent.comment %></td>
-        <td><%= torrent.import_at %></td>
-        <td><%= torrent.deleted_at %></td>
+        <td><%= torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+        <td><%= torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') if  torrent.deleted_at%></td>
         <td><%= link_to 'Show', torrent %></td>
         <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
         <td><%= link_to 'Destroy', torrent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,7 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Torrent', new_torrent_path %>

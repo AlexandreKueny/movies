@@ -73,7 +73,8 @@ class LoadTorrent
       unless t_films.map{|t| t.name}.include?(film[:name])
         torrent.t_films.build(
             name: film[:name],
-            size: film[:size]
+            size: film[:size],
+            duplicate: false
         )
       end
     end
@@ -93,8 +94,10 @@ class LoadTorrent
   def after_update(import_time)
     my_msg("#{@counters[:new_count]} torrent(s) added", true)
     # delete mailboxes if they don't exist anymore
-    delete_torrents import_time
     my_msg("#{Torrent.where('import_at < ?', import_time).count} torrent(s) deleted", true)
+    delete_torrents import_time
+    my_msg("#{TFilm.find_duplicates.count} duplicate film(s) by size in torrents", true)
+    TFilm.mark_duplicates
     my_msg("#{Torrent.current.count} torrent(s)", true)
   end
 
@@ -104,6 +107,7 @@ class LoadTorrent
       my_msg("#{torrent.name} is deleted at #{torrent.deleted_at}", true)
     end
   end
+
 
   def convert_torrent(t)
     if files = t['info']['files']

@@ -7,13 +7,12 @@
 
 <p>
   <strong>Size:</strong>
-  <%= @t_film.size %>
+  <%= number_to_human_size @t_film.size %>
 </p>
 
 <p>
   <strong>Torrent:</strong>
-  <%= @t_film.torrent %>
+  <%= @t_film.torrent.name %>
 </p>
 
-<%= link_to 'Edit', edit_t_film_path(@t_film) %> |
 <%= link_to 'Back', t_films_path %>

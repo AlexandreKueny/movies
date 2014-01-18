@@ -8,7 +8,6 @@
       <th>Torrent</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -16,16 +15,11 @@
     <% @t_films.each do |t_film| %>
       <tr>
         <td><%= t_film.name %></td>
-        <td><%= t_film.size %></td>
+        <td><%= number_to_human_size t_film.size %></td>
         <td><%= link_to t_film.torrent.name, torrent_path(t_film.torrent) %></td>
         <td><%= link_to 'Show', t_film %></td>
-        <td><%= link_to 'Edit', edit_t_film_path(t_film) %></td>
         <td><%= link_to 'Destroy', t_film, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New T film', new_t_film_path %>

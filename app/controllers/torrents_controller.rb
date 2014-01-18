@@ -13,9 +13,9 @@ class TorrentsController < ApplicationController
   end
 
   # GET /torrents/new
-  def new
-    @torrent = Torrent.new
-  end
+  #def new
+  #  @torrent = Torrent.new
+  #end
 
   # GET /torrents/1/edit
   def edit
@@ -23,19 +23,19 @@ class TorrentsController < ApplicationController
 
   # POST /torrents
   # POST /torrents.json
-  def create
-    @torrent = Torrent.new(torrent_params)
-
-    respond_to do |format|
-      if @torrent.save
-        format.html { redirect_to @torrent, notice: 'Torrent was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @torrent }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @torrent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #def create
+  #  @torrent = Torrent.new(torrent_params)
+  #
+  #  respond_to do |format|
+  #    if @torrent.save
+  #      format.html { redirect_to @torrent, notice: 'Torrent was successfully created.' }
+  #      format.json { render action: 'show', status: :created, location: @torrent }
+  #    else
+  #      format.html { render action: 'new' }
+  #      format.json { render json: @torrent.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # PATCH/PUT /torrents/1
   # PATCH/PUT /torrents/1.json
@@ -61,6 +61,11 @@ class TorrentsController < ApplicationController
     end
   end
 
+  def sync
+    redirect_to torrents_url notice: LoadTorrent.new.load_torrents.msg.join(',')
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_torrent
@@ -69,6 +74,6 @@ class TorrentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def torrent_params
-      params.require(:torrent).permit(:name, :path, :comment, :import_at, :deleted_at)
+      params.require(:torrent).permit(:name, :path, :comment)
     end
 end

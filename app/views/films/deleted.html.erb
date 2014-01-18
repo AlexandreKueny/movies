@@ -1,4 +1,4 @@
-<h1>Listing films</h1>
+<h1>Listing deleted films</h1>
 
 <table>
   <thead>
@@ -26,7 +26,7 @@
         <td><%= film.deleted_at.strftime('%d/%m/%Y %H:%M:%S') if film.deleted_at%></td>
         <td><%= link_to 'Show', film %></td>
         <td><%= link_to 'Edit', edit_film_path(film) %></td>
-        <td><%= link_to 'Destroy', film, method: :delete, data: { confirm: 'Are you sure?' }  unless film.deleted_at %></td>
+        <td><%= link_to 'Download', download_film_path(film), method: :post, data: { confirm: 'Are you sure?' }, remote: true if film.torrent %></td>
       </tr>
     <% end %>
   </tbody>

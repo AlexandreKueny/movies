@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :size %><br>
-    <%= f.number_field :size %>
+    <%= number_to_human_size @t_film.size %>
   </div>
   <div class="field">
     <%= f.label :torrent %><br>
-    <%= f.text_field :torrent %>
+    <%= @t_film.torrent.name %>
   </div>
   <div class="actions">
     <%= f.submit %>

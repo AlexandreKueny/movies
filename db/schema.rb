@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228205740) do
+ActiveRecord::Schema.define(version: 20131231165724) do
 
   create_table "films", force: true do |t|
     t.string   "name"
@@ -22,7 +22,11 @@ ActiveRecord::Schema.define(version: 20131228205740) do
     t.datetime "updated_at"
     t.datetime "import_at"
     t.datetime "deleted_at"
+    t.boolean  "duplicate",  default: false
+    t.integer  "torrent_id"
   end
+
+  add_index "films", ["torrent_id"], name: "index_films_on_torrent_id"
 
   create_table "t_films", force: true do |t|
     t.string   "name"
@@ -30,6 +34,7 @@ ActiveRecord::Schema.define(version: 20131228205740) do
     t.integer  "torrent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "duplicate",  default: false
   end
 
   create_table "torrents", force: true do |t|

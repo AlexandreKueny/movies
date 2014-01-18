@@ -67,7 +67,9 @@ class LoadFilm
         size: film_entry[:size],
         path: film_entry[:path],
         import_at: import_time,
-        deleted_at: nil)
+        duplicate: false,
+        deleted_at: nil,
+        torrent: nil)
     film
   end
 
@@ -84,8 +86,11 @@ class LoadFilm
   def after_update(import_time)
     my_msg("#{@counters[:new_count]} film(s) added", true)
     # delete mailboxes if they don't exist anymore
-    delete_films import_time
     my_msg("#{Film.where('import_at < ?', import_time).count} film(s) deleted", true)
+    delete_films import_time
+    my_msg("#{Film.find_duplicates.count} duplicate film(s) by size", true)
+    Film.mark_duplicates
+    Film.assign_torrents
     my_msg("#{Film.current.count} film(s)", true)
   end
 

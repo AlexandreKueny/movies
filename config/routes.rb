@@ -1,7 +1,23 @@
 Movies::Application.routes.draw do
-  resources :t_films
-  resources :torrents
-  resources :films
+  resources :t_films, except: [:new, :create, :edit, :update]
+  resources :torrents, except: [:new, :create] do
+    collection do
+      post 'sync'
+    end
+  end
+  resources :films, except: [:new, :create] do
+    collection do
+      post 'sync'
+      get 'deleted'
+    end
+    member do
+      post 'download'
+    end
+   end
+
+  root 'films#index'
+
+  post 'sync_all' => 'films#sync_all'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

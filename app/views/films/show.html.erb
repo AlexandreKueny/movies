@@ -7,12 +7,17 @@
 
 <p>
   <strong>Size:</strong>
-  <%= @film.size %>
+  <%= number_to_human_size @film.size %>
 </p>
 
 <p>
   <strong>Path:</strong>
   <%= @film.path %>
+</p>
+
+<p>
+  <strong>Torrent:</strong>
+  <%= @film.torrent.name if  @film.torrent %>
 </p>
 
 <p>

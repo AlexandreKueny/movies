@@ -17,12 +17,12 @@
 
 <p>
   <strong>Import at:</strong>
-  <%= @torrent.import_at %>
+  <%= @torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %>
 </p>
 
 <p>
   <strong>Deleted at:</strong>
-  <%= @torrent.deleted_at %>
+  <%= @torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') %>
 </p>
 
 <%= link_to 'Edit', edit_torrent_path(@torrent) %> |
