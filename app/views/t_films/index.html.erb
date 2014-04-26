@@ -1,25 +1,37 @@
-<h1>Listing t_films</h1>
+<div class="row">
+  <div class="small-12 columns text-center">
+    <h1>Le contenu des torrents</h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Torrent</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @t_films.each do |t_film| %>
+<div class="row">
+  <div class="small-12 columns">
+    <table>
+      <thead>
       <tr>
-        <td><%= t_film.name %></td>
-        <td><%= number_to_human_size t_film.size %></td>
-        <td><%= link_to t_film.torrent.name, torrent_path(t_film.torrent) %></td>
-        <td><%= link_to 'Show', t_film %></td>
-        <td><%= link_to 'Destroy', t_film, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Torrent</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @t_films.each do |t_film| %>
+          <tr>
+            <td><%= t_film.name %></td>
+            <td><%= number_to_human_size t_film.size %></td>
+            <td><%= link_to t_film.torrent.name, torrent_path(t_film.torrent) %></td>
+            <td>
+              <%= link_to "Show<span data-dropdown=\"drop_#{t_film.id}\"></span>".html_safe, t_film, class: "button split tiny radius" %>
+              <br>
+              <ul id="drop_<%= t_film.id %>" class="f-dropdown" data-dropdown-content>
+                <li><%= link_to('Destroy', t_film, method: :delete, data: {confirm: 'Are you sure?'}) %></li>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

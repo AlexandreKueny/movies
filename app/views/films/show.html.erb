@@ -1,29 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @film.name %>
-</p>
-
-<p>
-  <strong>Size:</strong>
-  <%= number_to_human_size @film.size %>
-</p>
-
-<p>
-  <strong>Path:</strong>
-  <%= @film.path %>
-</p>
-
-<p>
-  <strong>Torrent:</strong>
-  <%= @film.torrent.name if  @film.torrent %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @film.comment %>
-</p>
-
-<%= link_to 'Edit', edit_film_path(@film) %> |
-<%= link_to 'Back', films_path %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Afficher un film</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'affiche' %>
+    <hr>
+    <%= link_to 'Back', films_path, class: "button  tiny radius" %>
+    <%= link_to 'Edit', edit_film_path(@film), class: "button secondary tiny radius" %>
+  </div>
+</div>

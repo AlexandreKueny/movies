@@ -1,31 +1,44 @@
-<h1>Listing torrents</h1>
+<div class="row">
+  <div class="small-12 columns text-center">
+    <h1>Les torrents</h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Path</th>
-      <th>Comment</th>
-      <th>Import at</th>
-      <th>Deleted at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @torrents.each do |torrent| %>
+<div class="row">
+  <div class="small-12 columns">
+    <table>
+      <thead>
       <tr>
-        <td><%= torrent.name %></td>
-        <td><%= torrent.path %></td>
-        <td><%= torrent.comment %></td>
-        <td><%= torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
-        <td><%= torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') if  torrent.deleted_at%></td>
-        <td><%= link_to 'Show', torrent %></td>
-        <td><%= link_to 'Edit', edit_torrent_path(torrent) %></td>
-        <td><%= link_to 'Destroy', torrent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Path</th>
+        <th>Comment</th>
+        <th>Import at</th>
+        <th>Deleted at</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+      <% @torrents.each do |torrent| %>
+          <tr>
+            <td><%= torrent.name %></td>
+            <td><%= torrent.path %></td>
+            <td><%= torrent.comment %></td>
+            <td><%= torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+            <td><%= torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') if  torrent.deleted_at %></td>
+            <td>
+              <%= link_to "Show<span data-dropdown=\"drop_#{torrent.id}\"></span>".html_safe, torrent, class: "button split tiny radius" %>
+              <br>
+              <ul id="drop_<%= torrent.id %>" class="f-dropdown" data-dropdown-content>
+                <li><%= link_to 'Edit', edit_torrent_path(torrent) %></li>
+                <% unless torrent.deleted_at %>
+                    <li><%= link_to('Destroy', torrent, method: :delete, data: {confirm: 'Are you sure?'}) %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,37 +1,25 @@
-<%= form_for(@film) do |f| %>
-  <% if @film.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@film.errors.count, "error") %> prohibited this film from being saved:</h2>
+<%= simple_form_for(@film) do |f| %>
+    <% if @film.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@film.errors.count, "error") %> prohibited this film from being saved:</h2>
 
-      <ul>
-      <% @film.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @film.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="row">
+      <div class="small-8 columns">
+        <%= f.input :name, label: 'Nom' %>
+        <%= f.input :comment, label: 'Commentaires' %>
+        <%= f.association :torrent, prompt: 'Choisir un torrent', include_blank: true %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :size %><br>
-    <%= number_to_human_size @film.size %>
-  </div>
-  <div class="field">
-    <%= f.label :path %><br>
-    <%= f.text_area :path %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div>
-    <div class="field">
-      <%= f.label :torrent %><br>
-      <%= f.collection_select :torrent_id, Torrent.current, :id, :name, {include_blank: '(none)', prompt: true }%>
+    <div class="row">
+      <div class="small-8 columns">
+        <%= f.button :submit, 'Valider', class: 'small radius' %>
+      </div>
     </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

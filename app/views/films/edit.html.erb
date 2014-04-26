@@ -1,6 +1,14 @@
-<h1>Editing film</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @film %> |
-<%= link_to 'Back', films_path %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Modifier un film</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'form' %>
+    <%= render 'affiche' %>
+    <hr>
+    <%= link_to 'Back', films_path, class: "button  tiny radius" %>
+    <%= link_to 'Show', @film, class: "button secondary tiny radius" %>
+  </div>
+</div>
