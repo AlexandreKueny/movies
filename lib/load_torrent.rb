@@ -115,15 +115,19 @@ class LoadTorrent
       files.each do |f|
         f['path'].each do |g|
           if g =~ /\.(avi|mkv|mpeg|mp4)\Z/
-            fa << {name: g.force_encoding('UTF-8'), size: f['length']}
+            fa << {name: convert_to_utf8(g), size: f['length']}
           end
         end
       end
       fa
     else
-      [{name: t['info']['name'], size: t['info']['length']}]
+      [{name: convert_to_utf8(t['info']['name']), size: t['info']['length']}]
 
     end
+  end
+
+  def convert_to_utf8(value)
+    value.encode('UTF-8', invalid: :replace, undef: :replace, replace: '?' )
   end
 
 
