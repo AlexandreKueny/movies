@@ -40,12 +40,17 @@ end
 
 group :development do
   gem 'thin', '~>1.6'
+  gem 'quiet_assets'
 end
 
 gem 'foundation-rails'
 group :development do
   gem 'rails_layout'
 end
+
+# for Rails 4.1
+gem 'tzinfo-data'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

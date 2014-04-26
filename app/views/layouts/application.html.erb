@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Movies</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<ul>
-  <li><%= link_to 'Torrents', torrents_path %></li>
-  <li><%= link_to 'Contenu des torrents', t_films_path %></li>
-  <li><%= link_to 'Films', films_path %></li>
-  <li><%= link_to 'Deleted Films', deleted_films_path %></li>
-  <li><%= link_to 'Sync Torrents', sync_torrents_path, method: :post %></li>
-  <li><%= link_to 'Sync Films', sync_films_path, method: :post %></li>
-  <li><%= link_to 'Sync All', sync_all_path, method: :post %></li>
-
-</ul>
-<%= yield %>
-
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Movies" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Movies" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%# Modernizr is required for Zurb Foundation %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+  </body>
 </html>
