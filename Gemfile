@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -15,7 +15,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -27,9 +27,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1'
 
-gem 'hashie', '~>2.0.5'
+gem 'hashie', '~>2.0'
 
 gem 'torrent-ruby'
 
@@ -39,7 +39,12 @@ group :doc do
 end
 
 group :development do
-  gem 'thin', '~>1.6.1'
+  gem 'thin', '~>1.6'
+end
+
+gem 'foundation-rails'
+group :development do
+  gem 'rails_layout'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
