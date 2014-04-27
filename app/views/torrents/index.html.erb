@@ -31,9 +31,9 @@
               <br>
               <ul id="drop_<%= torrent.id %>" class="f-dropdown" data-dropdown-content>
                 <li><%= link_to 'Edit', edit_torrent_path(torrent) %></li>
-                <% unless torrent.deleted_at %>
+                <% #unless torrent.deleted_at %>
                     <li><%= link_to('Destroy', torrent, method: :delete, data: {confirm: 'Are you sure?'}) %></li>
-                <% end %>
+                <% #end %>
               </ul>
             </td>
           </tr>

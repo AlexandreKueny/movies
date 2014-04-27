@@ -10,10 +10,12 @@
         <td>Commentaires</td>
         <td><%= @film.comment %></td>
       </tr>
-      <tr>
-        <td>Torrent</td>
-        <td><%= @film.torrent.name if @film.torrent %></td>
-      </tr>
+      <% if @film.torrent %>
+          <tr>
+            <td>Torrent</td>
+            <td><%= @film.torrent.name %></td>
+          </tr>
+      <% end %>
       <tr>
         <td>Taille</td>
         <td><%= number_to_human_size @film.size %></td>

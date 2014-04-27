@@ -4,7 +4,7 @@ class FilmsController < ApplicationController
   # GET /films
   # GET /films.json
   def index
-    @films = Film.includes(:torrent).order(name: :asc)
+    @films = Film.current.includes(:torrent).order(name: :asc)
   end
 
   # GET /films/deleted

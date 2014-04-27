@@ -14,7 +14,6 @@
         <th>Path</th>
         <th>Comment</th>
         <th>Torrent</th>
-        <th>Deleted_at</th>
         <th></th>
       </tr>
       </thead>
@@ -27,15 +26,14 @@
             <td><%= film.path %></td>
             <td><%= film.comment %></td>
             <td><%= link_to film.torrent.name, torrent_path(film.torrent) if film.torrent %></td>
-            <td><%= film.deleted_at.strftime('%d/%m/%Y %H:%M:%S') if film.deleted_at %></td>
             <td>
               <%= link_to "Show<span data-dropdown=\"drop_#{film.id}\"></span>".html_safe, film, class: "button split tiny radius" %>
               <br>
               <ul id="drop_<%=film.id%>" class="f-dropdown" data-dropdown-content>
                 <li><%= link_to 'Edit', edit_film_path(film) %></li>
-                <% unless film.deleted_at %>
+                <% #unless film.deleted_at %>
                     <li><%= link_to('Destroy', film, method: :delete, data: {confirm: 'Are you sure?'}) %></li>
-                <% end %>
+                <% #end %>
               </ul>
             </td>
           </tr>

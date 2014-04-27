@@ -1,18 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @t_film.name %>
-</p>
-
-<p>
-  <strong>Size:</strong>
-  <%= number_to_human_size @t_film.size %>
-</p>
-
-<p>
-  <strong>Torrent:</strong>
-  <%= @t_film.torrent.name %>
-</p>
-
-<%= link_to 'Back', t_films_path %>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Détails du contenu du torrent</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= render 'affiche' %>
+    <hr>
+    <%= link_to 'Back', :back, class: "button  tiny radius" %>
+  </div>
+</div>

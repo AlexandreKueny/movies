@@ -1,6 +1,8 @@
 class Film < ActiveRecord::Base
 
   belongs_to :torrent
+  has_many :t_films, through: :torrent
+
   scope :deleted, -> { where('deleted_at IS not null') }
   scope :current, -> { where('deleted_at IS null') }
   scope :unique, -> { where(duplicate: false) }

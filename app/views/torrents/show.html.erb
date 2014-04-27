@@ -1,29 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @torrent.name %>
-</p>
-
-<p>
-  <strong>Path:</strong>
-  <%= @torrent.path %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @torrent.comment %>
-</p>
-
-<p>
-  <strong>Import at:</strong>
-  <%= @torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') %>
-</p>
-
-<%= link_to 'Edit', edit_torrent_path(@torrent) %> |
-<%= link_to 'Back', torrents_path %>
+<div class="row">
+  <div class="large-6 columns">
+    <h1>Détails du torrent</h1>
+    <%= render 'affiche' %>
+  </div>
+  <div class="large-6 columns">
+    <h1>Contenu du torrent</h1>
+    <%= render 'affiche_t_films' %>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <hr>
+    <%= link_to 'Back', :back, class: "button  tiny radius" %>
+    <%= link_to 'Edit', edit_torrent_path(@torrent), class: "button secondary tiny radius" %>
+  </div>
+</div>

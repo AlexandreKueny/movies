@@ -1,10 +1,11 @@
 class TFilm < ActiveRecord::Base
 
   belongs_to :torrent
-  belongs_to :c_torrent, -> { where('deleted_at IS null') }, class_name: 'Torrent',  foreign_key: 'torrent_id'
+  belongs_to :c_torrent, -> { where('deleted_at IS null') }, class_name: 'Torrent', foreign_key: 'torrent_id'
+  has_many :films, through: :torrent
 
-  scope :current, -> {includes(:torrent).where('torrents.deleted_at IS null').references(:torrents)}
-  scope :unique, -> { where(duplicate: false)}
+  scope :current, -> { includes(:torrent).where('torrents.deleted_at IS null').references(:torrents) }
+  scope :unique, -> { where(duplicate: false) }
   scope :duplicate, -> { where(duplicate: true) }
 
   def self.mark_duplicates

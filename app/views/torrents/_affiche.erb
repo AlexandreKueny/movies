@@ -1,0 +1,28 @@
+  <div class="large-12 columns">
+    <table>
+      <tbody>
+      <tr>
+        <td>Nom</td>
+        <td><%= @torrent.name %></td>
+      </tr>
+      <tr>
+        <td>Commentaires</td>
+        <td><%= @torrent.comment %></td>
+      </tr>
+      <tr>
+        <td>Path</td>
+        <td><%= @torrent.path %></td>
+      </tr>
+      <tr>
+        <td>Importé le</td>
+        <td><%= @torrent.import_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+      </tr>
+      <% if @torrent.deleted_at %>
+          <tr>
+            <td>Supprimé le</td>
+            <td><%= @torrent.deleted_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,20 @@
+<div class="large-12 columns">
+  <table>
+    <tbody>
+    <% @torrent.t_films.each do |t_film| %>
+        <tr>
+          <td><%= t_film.name %></td>
+          <td>
+            <%= link_to "Show<span data-dropdown=\"drop_#{t_film.id}\"></span>".html_safe, t_film, class: "button split tiny radius" %>
+            <br>
+            <ul id="drop_<%=t_film.id%>" class="f-dropdown" data-dropdown-content>
+              <% #unless film.deleted_at %>
+              <li><%= link_to('Destroy', t_film, method: :delete, data: {confirm: 'Are you sure?'}) %></li>
+              <% #end %>
+            </ul>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
