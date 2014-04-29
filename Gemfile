@@ -46,6 +46,7 @@ group :development do
 end
 
 gem 'foundation-rails'
+
 group :development do
   gem 'rails_layout'
 end
