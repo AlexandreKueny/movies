@@ -22,7 +22,7 @@
       <% @films.each do |film| %>
           <tr>
             <td><%= film.name %></td>
-            <td><%= number_to_human_size film.size %></td>
+            <td><%= film.size %></td>
             <td><%= film.path %></td>
             <td><%= film.comment %></td>
             <td><%= link_to film.torrent.name, torrent_path(film.torrent) if film.torrent %></td>

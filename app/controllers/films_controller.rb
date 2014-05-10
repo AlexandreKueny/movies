@@ -69,7 +69,8 @@ class FilmsController < ApplicationController
 
   def sync(msg = '')
     msg << LoadFilm.new.load_films.msg.join(',')
-    redirect_to sync_link, notice: msg
+    render nothing: true
+    #redirect_to sync_link, notice: msg
   end
 
   def sync_all

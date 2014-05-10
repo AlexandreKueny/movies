@@ -8,6 +8,8 @@ class Film < ActiveRecord::Base
   scope :unique, -> { where(duplicate: false) }
   scope :duplicate, -> { where(duplicate: true) }
 
+  validates :name, presence: true
+
   def self.mark_duplicates
     self.find_duplicates.each do |entry|
       entry.duplicate = true
