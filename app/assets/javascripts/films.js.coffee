@@ -57,3 +57,5 @@ jQuery ->
 
     $("#search_bar").on "keyup", ->
       oTable.fnFilter $("#search_bar").val()
+
+    new $.fn.dataTable.FixedHeader oTable, "offsetTop": 45
