@@ -11,6 +11,11 @@ class LoadFilm
     @status = false
     @counters = init_counters
     @film_base_path = Pathname.new(CFG.films_base_path)
+    @job = nil
+  end
+
+  def before(job)
+    @job = job
   end
 
   # load the films table with the content of the disk
@@ -28,20 +33,35 @@ class LoadFilm
   def update_films
     my_msg('Start updating film DB', false)
     import_time = Time.zone.now
-    list_dir @film_base_path do |entry|
+    films = list_films @film_base_path
+    films.each_with_index do |entry, index|
       _f = {}
       _f[:name] = entry.basename(entry.extname).to_s
       _f[:path] = entry.relative_path_from(@film_base_path).to_s
       _f[:size] = entry.size
       create_or_update_film(import_time, _f)
+      update_job_status(90*(index+1)/films.size) #TODO:
     end
     after_update(import_time)
 
     my_msg('End   updating film DB', false)
     log_message
+    update_job_status(100)
     self
   end
 
+  def update_job_status(value)
+    return unless @job
+    @job.update!(job_process_status: value)
+  end
+
+  def list_films(base)
+    films=[]
+    Dir.glob(File.join(base, '**', '*')) do |entry|
+       films << Pathname.new(entry) if File.file?(entry)
+    end
+    films
+  end
 
   def list_dir(base, &block)
     base.each_child do |entry|
@@ -90,6 +110,7 @@ class LoadFilm
     delete_films import_time
     my_msg("#{Film.find_duplicates.count} duplicate film(s) by size", true)
     Film.mark_duplicates
+    update_job_status(97)
     Film.assign_torrents
     my_msg("#{Film.current.count} film(s)", true)
   end
@@ -99,6 +120,7 @@ class LoadFilm
     Film.deleted.each do |film|
       my_msg("#{film.name} is deleted at #{film.deleted_at}",true)
     end
+    update_job_status(95)
   end
 
     # append output msg to ret_msg and log msg

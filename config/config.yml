@@ -1,6 +1,6 @@
 development:
   films_base_path: 'G:/films'
-  torrents_base_path: 'C:/Users/Alexandre/Downloads/torrent/films'
+  torrents_base_path: 'D:/Users/Alexandre/Téléchargements/Torrents/films'
   torrents_downloader: 'C:/Users/Alexandre/AppData/Roaming/uTorrent/uTorrent.exe'
 
 production:

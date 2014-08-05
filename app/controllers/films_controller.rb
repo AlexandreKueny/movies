@@ -68,7 +68,9 @@ class FilmsController < ApplicationController
   end
 
   def sync(msg = '')
-    msg << LoadFilm.new.load_films.msg.join(',')
+    #msg << LoadFilm.new.delay.load_films.msg.join(',')
+    job = LoadFilm.new.delay.load_films
+    session[:job_film] = job.id
     render nothing: true
     #redirect_to sync_link, notice: msg
   end
@@ -76,6 +78,22 @@ class FilmsController < ApplicationController
   def sync_all
     msg = LoadTorrent.new.load_torrents.msg
     sync msg
+  end
+
+  def status
+    if session[:job_film] then
+      render json: job_status
+    else
+      render nothing: true
+    end
+  end
+
+  def job_status
+    value = Delayed::Job.find(session[:job_film]).job_process_status
+    {value: value, display: "width: #{value}%"}
+  rescue ActiveRecord::RecordNotFound
+    {value: 100, display: 'width: 100%'}
+  rescue ActiveRecord::StatementInvalid
   end
 
   def download

@@ -8,6 +8,7 @@ Movies::Application.routes.draw do
   resources :films, except: [:new, :create] do
     collection do
       post 'sync'
+      get 'status'
       get 'deleted'
     end
     member do

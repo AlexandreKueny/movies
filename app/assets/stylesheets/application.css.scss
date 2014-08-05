@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+.no_display {
+  display: none;
+}
+
+div.progress {
+  top: 7px;
+  font-size: 0.875rem;
+}
+

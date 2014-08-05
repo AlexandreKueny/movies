@@ -34,7 +34,7 @@ jQuery ->
           render_size_helper data
         asSorting: ["desc", "asc"]
         sType: 'numeric'
-      ,
+        ,
         # 02 Path
         null,
 
